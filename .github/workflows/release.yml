@@ -13,5 +13,5 @@ jobs:
     #uses: tells action which predefined actions need to retrived.(like task as azure pipeline)
     - uses: actions/checkout@v2 #accout/repository(checkout into branch)   
     - run: docker build -t miraj32444/nest-app .
-    - run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password stdin
+    - run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
     - run: docker push miraj32444/nest-app
