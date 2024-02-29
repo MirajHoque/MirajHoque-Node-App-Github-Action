@@ -1,0 +1,17 @@
+name: Release #Name of the workflow(optional).
+
+on: #events or list of event that trigger workflow(push/pull req).
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy: #name of the job
+
+    runs-on: ubuntu-latest #tells action which runner to use.
+
+    steps:
+    #uses: tells action which predefined actions need to retrived.(like task as azure pipeline)
+    - uses: actions/checkout@v2 #accout/repository(checkout into branch)   
+    - run: docker build -t miraj32444/nest-app .
+    - run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password stdin
+    - run: docker push miraj32444/nest-app
