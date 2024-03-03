@@ -18,7 +18,7 @@ jobs:
 
     steps:
     #uses: tells action which predefined actions need to retrived.(like task as azure pipeline)
-    - uses: actions/checkout@v3 #accout/repository(checkout into branch)
+    - uses: actions/checkout@v3 #accout/repository((download the content of the repo to current wworkspace)
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3 #setup(installing) node in that ubuntu runner(agent)
       with: #specify which version of node we want to use.
