@@ -11,17 +11,19 @@ jobs:
 
     runs-on: ubuntu-latest #tells action which runner to use.
 
-    strategy: #strategy configuration define how jobs should be parallelized or matrix-expanded.
-      matrix: #create matrix builds. used to testing code against multiple environments or configurations.
+    strategy: #strategy configuration defines how jobs should be parallelized or matrix-expanded.
+      matrix: #create matrix builds. used to test code against multiple environments or configurations.
         node-version: [14.x, 16.x, 18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    #uses: tells action which predefined actions need to retrived.(like task as azure pipeline)
-    - uses: actions/checkout@v3 #accout/repository(checkout into branch)
+    #uses: tells action which predefined actions need to be retrieved. (like a task in an Azure pipeline)
+    - uses: actions/checkout@v3 #checks out your repository’s code onto the runner’s filesystem.accout/repository(checkout into branch)
+    # Clones your repository onto the virtual machine where the job is running.
+    # By default, it fetches the branch or commit that triggered the workflow.
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3 #setup(installing) node in that ubuntu runner(agent)
-      with: #specify which version of node we want to use.
+      with: #pass input parameter to an action. Specify which version of Node we want to use.
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     #execute a cmd on the runner.    
